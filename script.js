@@ -18,7 +18,9 @@ const displayCategories=(categories)=>{
         categoryContainer.innerHTML+=`
         <ul class=''>  
         
-           <li class=" w-full text-start  text-[#1F2937] p-2 hover:bg-[#CFF0DC]  font-semibold rounded-sm" onclick='loadCategoriesContainer(${category.id})' id='categoryId-${category.id}'>
+           <li class=" w-full text-start  text-[#1F2937] p-2 hover:bg-[#CFF0DC] 
+            font-semibold rounded-sm" onclick='loadCategoriesContainer(${category.id})'
+             id='categoryId-${category.id}'>
             ${category.category_name}
            </li>
         
@@ -67,13 +69,15 @@ const displayAllItems=(items)=>{
                  alt="image" />
               </figure>
                 <div class="p-5 ">
-         <h2 class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
+         <h2  onclick=categoryDetails(${item.id}) class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
           <p class="text-[12px] font-normal text-[#1F2937]">${item.description}</p>
              <div class="flex justify-between items-center py-2 " >
-              <button onclick=categoryDetails(${item.id}) class="btn text-[#15803D] bg-[#DCFCE7] rounded-full">${item.category}</button>
-              <p class="text-sm font-semibold text-[#15803D]">
-                ৳${item.price}
-              </p>
+              <button  class="btn text-[#15803D] bg-[#DCFCE7] rounded-full">${item.category}</button>
+               <div class='flex'>
+              <p class="text-sm font-semibold text-[#15803D]">৳</p>
+              <p class="text-sm font-semibold text-[#15803D]">${item.price}</p>
+
+             </div>
              </div>
 
           <div class="card-actions ">
@@ -115,15 +119,17 @@ allItems.forEach((item)=>{
                  alt="Shoes" />
               </figure>
                 <div class=" ">
-         <h2 class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
+         <h2 onclick=categoryDetails(${item.id})  class="card-title text-base font-semibold  text-[#1F2937] ">${item.name}</h2>
           <p class="text-[12px] font-normal text-[#1F2937]">${item.description}</p>
              <div class="flex justify-between items-center py-2 " >
-              <button class="btn text-[#15803D] bg-[#DCFCE7] rounded-full" onclick=categoryDetails(${item.id}) >${item.category}</button>
-              <p class="text-sm font-semibold text-[#15803D]">
-                ৳${item.price}
-              </p>
-             </div>
+              <button class="btn text-[#15803D] bg-[#DCFCE7] rounded-full" >${item.category}</button>
+              <div class='flex'>
+              <p class="text-sm font-semibold text-[#15803D]">৳</p>
+              <p class="text-sm font-semibold text-[#15803D]">${item.price}</p>
 
+             </div>
+             </div>
+         
           <div class="card-actions ">
          <button class="btn rounded-full w-full text-base  text-white font-semibold bg-[#15803D]">Add to Cart</button>
        </div>
@@ -145,9 +151,7 @@ const url=` https://openapi.programming-hero.com/api/plant/${id}`
 
 fetch(url)
 .then(res=>res.json())
-.then(res=>displayTreeDetails(res.plants
-)
-)
+.then(res=>displayTreeDetails(res.plants))
 
 }
 
@@ -159,9 +163,15 @@ const displayTreeDetails=(tree)=>{
           <h1 class="text-xl font-bold text-black">${tree.name}</h1>
            <img  class="rounded-xl h-44 w-full " src="${tree.image}" alt="">
            
-           <p class="text-base font-semibold text-black">Category:<span class="text-base font-normal text-gray-600">${tree.category}</span></p>
-        <p class="text-base font-semibold text-black">Price:<span class="text-base font-normal text-gray-600">৳${tree.price}</span></p>
-        <p class="text-base font-semibold text-black">Description:<span class="text-base font-normal text-gray-600">${tree.description}</span></p>
+           <p class="text-base font-semibold text-black">
+           Category:<span class="text-base font-normal text-gray-600">${tree.category}</span>
+           </p>
+            <p class="text-base font-semibold text-black">
+            Price:৳<p class="text-base font-normal text-gray-600">${tree.price}</p>
+            </p>
+            <p class="text-base font-semibold text-black">
+           Description:<span class="text-base font-normal text-gray-600">${tree.description}</span>
+           </p>
 
           <div class="modal-action">
             <form method="dialog">
@@ -173,6 +183,73 @@ const displayTreeDetails=(tree)=>{
   `
   document.getElementById('tree_modal').showModal();
 }
+
+//add to cart 
+let cartTrees=[];
+
+loadAllItemsContainer.addEventListener('click',(e)=>{
+  if (e.target.innerText==='Add to Cart') {
+    handleCart(e);
+    
+  }
+})
+
+const handleCart=(e)=>{
+  const treeName=e.target.parentNode.parentNode.children[0].innerText;
+  const treePrice=e.target.parentNode.parentNode.children[2].children[1].children[1].innerText;
+
+
+// console.log(treePrice);
+
+  
+  cartTrees.push({treeName,treePrice})
+displayCartTree(cartTrees)
+ 
+  
+}
+const displayCartTree=(cartTrees)=>{
+
+ const yourCart=document.getElementById('your-cart-container');
+ yourCart.innerHTML=` `;
+   
+
+ cartTrees.forEach((cartTree ,index)=>{
+if (index === cartTrees.length-1) {
+    alert (`${cartTree.treeName} has been added to cart.`)
+   }
+
+  yourCart.innerHTML+=`
+               <div class='mt-2'>
+                    <div class=" bg-[#f0fdf4] flex  p-4 shadow-sm
+                  justify-between items-center rounded-xl ">
+                    <div><h2>${cartTree.treeName}</h2>
+                    <h3 id='price' class="">৳ ${cartTree.treePrice} </h3>
+                  </div>
+                  <div onclick='handleDeleteCart(${cartTree.id})' class="">delete</div>
+                  </div>
+                 
+                </div>
+  `
+
+ const total=cartTrees.reduce((price,cart)=>price+parseFloat(cart.treePrice),0)
+  
+  document.getElementById('total-price').innerText=`${total}`
+ })
+
+}
+
+//delete 
+
+
+
+
+
+
+
+
+
+
+
 
 const showLoading=()=>{
    categoryContainer.innerHTML=`
@@ -187,7 +264,6 @@ const showLoading=()=>{
  
    `
 }
-
 
 loadCategory();
 loadAllCategory();
