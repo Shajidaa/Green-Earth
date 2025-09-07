@@ -64,7 +64,7 @@ const displayAllItems=(items)=>{
 
                  src=${item.image}
 
-                 alt="Shoes" />
+                 alt="image" />
               </figure>
                 <div class="p-5 ">
          <h2 class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
@@ -141,8 +141,37 @@ allItems.forEach((item)=>{
 
 const categoryDetails=(id)=>{
 
+const url=` https://openapi.programming-hero.com/api/plant/${id}`
 
+fetch(url)
+.then(res=>res.json())
+.then(res=>displayTreeDetails(res.plants
+)
+)
 
+}
+
+const displayTreeDetails=(tree)=>{
+  console.log(tree);
+  const detailsContainer=document.getElementById('details-container');
+  detailsContainer.innerHTML='';
+  detailsContainer.innerHTML+=`
+          <h1 class="text-xl font-bold text-black">${tree.name}</h1>
+           <img  class="rounded-xl h-44 w-full " src="${tree.image}" alt="">
+           
+           <p class="text-base font-semibold text-black">Category:<span class="text-base font-normal text-gray-600">${tree.category}</span></p>
+        <p class="text-base font-semibold text-black">Price:<span class="text-base font-normal text-gray-600">৳${tree.price}</span></p>
+        <p class="text-base font-semibold text-black">Description:<span class="text-base font-normal text-gray-600">${tree.description}</span></p>
+
+          <div class="modal-action">
+            <form method="dialog">
+           <!-- if there is a button in form, it will close the modal -->
+         <button class="btn">Close</button>
+          </form>
+          </div> 
+  
+  `
+  document.getElementById('tree_modal').showModal();
 }
 
 const showLoading=()=>{
@@ -155,8 +184,7 @@ const showLoading=()=>{
   <div class="w-4 h-4 rounded-full bg-black animate-bounce [animation-delay:-.5s]"></div>
 </div>
 </div>
-   
-   
+ 
    `
 }
 
