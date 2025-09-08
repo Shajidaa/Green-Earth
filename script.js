@@ -66,25 +66,28 @@ const displayAllTrees=(items)=>{
    loadAllItemsContainer.innerHTML='';
    
     // console.log(items);
-    items.forEach(item=>{
+    items.forEach((item )=>{
         // console.log(item);
         // console.log(item.image);
+    
+        
         
         loadAllItemsContainer.innerHTML+=`
-        <div class="card bg-base-100 shadow-sm h-full md:max-w-96 max-w-full p-5 flex lg:gap-2  ">
-        <div class='  overflow-hidden' p-5>     
-         <figure>
-                <img class=" bg-cover aspect-square  bg-center rounded-xl w-full h-full object-cover"
+        <div class=" h-fit rounded-lg  bg-base-100 shadow-sm p-3   ">
+    
+
+         <figure class=' rounded-xl overflow-hidden'>
+                <img class="aspect-3/2   object-cover"
 
                  src=${item.image}
 
                  alt="image" />
               </figure>
-              </div>
             
-                <div class=" ">
+            
+                <div class=" mt-1">
          <h2  onclick=categoryDetails(${item.id}) class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
-          <p class="text-[12px] font-normal text-[#1F2937]">${item.description}</p>
+          <p class="text-[12px] font-normal text-[#1F2937] line-clamp-2 lg:line-clamp-3">${item.description}</p>
              <div class="flex justify-between items-center py-2 " >
               <p  class=" py-2 px-3 text-[#15803D] bg-[#DCFCE7] rounded-full text-xs">${item.category}</p>
                <div class='flex'>
@@ -140,7 +143,7 @@ const displayTreeDetails=(tree)=>{
           <div class="modal-action">
             <form method="dialog">
            <!-- if there is a button in form, it will close the modal -->
-         <button class="btn  mb-1">Close</button>
+         <button class="btn bg-green-600 mb-1">Close</button>
           </form>
           </div> 
   </div> 
@@ -162,11 +165,12 @@ const handleCart=(e)=>{
   const treeName=e.target.parentNode.parentNode.children[0].innerText;
   const treePrice=e.target.parentNode.parentNode.children[2].children[1].children[1].innerText;
 
-
+const id=Date.now( );
+console.log(id);
 // console.log(treePrice);
 
    alert (`${treeName} has been added to cart.`)
-  cartTrees.push({treeName,treePrice})
+  cartTrees.push({treeName,treePrice,id})
   
 displayCartTree(cartTrees)
  
@@ -178,17 +182,17 @@ const displayCartTree=(cartTrees)=>{
  yourCart.innerHTML=` `;
    
 
- cartTrees.forEach((cartTree ,index)=>{
+ cartTrees.forEach(cartTree=>{
 
 
   yourCart.innerHTML+=`
                <div class='mt-2'>
-                    <div class=" bg-[#f0fdf4] flex  p-4 shadow-sm
+                    <div class=" bg-[#f0fdf4] flex  p-2 shadow-sm
                   justify-between items-center rounded-xl ">
-                    <div><h2>${cartTree.treeName}</h2>
-                    <h3 id='price' class="text-base font-normal text-[#1F2937]">৳ ${cartTree.treePrice} <i class="fa-solid fa-xmark text-[#1F2937] text-base "></i> </h3>
+                    <div><h2 class='text-base'>${cartTree.treeName}</h2>
+                    <h3 id='price' class="text-xs font-normal text-[#1F2937]">৳ ${cartTree.treePrice} <i class="fa-solid fa-xmark text-[#1F2937] text-xs "></i> <span>1</span> </h3>
                   </div>
-                  <div onclick='handleDeleteCart(${cartTree.index})' class="">delete</div>
+                  <div onclick='handleDeleteCart(${cartTree.id})' class=""><i class="fa-solid fa-xmark text-[#1F2937] text-xs "></i></div>
                   </div>
                  
                 </div>
@@ -204,8 +208,8 @@ const displayCartTree=(cartTrees)=>{
 
 //delete  
 
-const handleDeleteCart=(index)=>{
-cartTrees.splice(index,1);
+const handleDeleteCart=(id)=>{
+cartTrees=cartTrees.filter(cartTree=>cartTree.id !=id)
 displayCartTree(cartTrees);
 }
  //total function
@@ -227,9 +231,10 @@ const total=cartTrees.reduce((price,cart)=>price+parseFloat(cart.treePrice),0)
 
 
 const showLoading=()=>{
+
     loadAllItemsContainer.innerHTML=`
    
-   <div class= flex justify-center items-center ">
+   <div class= "col-span-full flex justify-center items-center ">
 <div class="flex flex-row gap-2">
   <div class="w-4 h-4 rounded-full bg-green-600 animate-bounce"></div>
   <div class="w-4 h-4 rounded-full bg-green-600 animate-bounce [animation-delay:-.3s]"></div>
