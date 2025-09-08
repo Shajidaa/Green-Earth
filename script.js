@@ -17,8 +17,7 @@ const displayCategories=(categories)=>{
         // console.log(category.category_name);
         categoryContainer.innerHTML+=`
         <ul class=''>  
-        
-           <li class=" w-full text-start  text-[#1F2937] p-2 hover:bg-[#CFF0DC] 
+          <li class=" w-full text-start  text-[#1F2937] p-2 hover:bg-[#CFF0DC] 
             font-semibold rounded-sm" onclick='loadCategoriesContainer(${category.id})'
              id='categoryId-${category.id}'>
             ${category.category_name}
@@ -45,24 +44,26 @@ const displayCategories=(categories)=>{
 // load all category items function
 
 const loadAllCategory=()=>{
+ showLoading();
     fetch(`https://openapi.programming-hero.com/api/plants `)
     .then(res=>res.json())
     .then(res=> displayAllItems(res.plants)
     )
+     
 }
 const displayAllItems=(items)=>{
 
    loadAllItemsContainer.innerHTML='';
-     
+   
     // console.log(items);
     items.forEach(item=>{
         // console.log(item);
         // console.log(item.image);
         
         loadAllItemsContainer.innerHTML+=`
-        <div class="card bg-base-100 shadow-sm h-96 max-w-96">
-                 <figure class='h-44  p-5'>
-                <img class=" bg-cover rounded-2xl w-full"
+        <div class="card bg-base-100 shadow-sm h-96 md:max-w-96 max-w-full">
+                 <figure class='h-44'>
+                <img class=" bg-cover bg-center rounded-2xl w-full"
 
                  src=${item.image}
 
@@ -102,7 +103,7 @@ const loadCategoriesContainer=(id)=>{
 
 const displayLoadCategoriesContainer=(allItems)=>{
 // console.log(allItems);
-   
+  showLoading();
 loadAllItemsContainer.innerHTML='';
 
 allItems.forEach((item)=>{
@@ -110,9 +111,9 @@ allItems.forEach((item)=>{
   
       loadAllItemsContainer.innerHTML+=`
 
-         <div class="card bg-base-100 shadow-sm h-96 p-5 max-w-96">
+         <div class="card bg-base-100 shadow-sm max-h-96 p-5 md:max-w-96 max-w-full">
                  <figure class='h-44 '>
-                <img class=" bg-cover rounded-2xl w-full"
+                <img class=" bg-cover bg-center rounded-2xl w-full"
 
                  src=${item.image}
 
@@ -160,26 +161,27 @@ const displayTreeDetails=(tree)=>{
   const detailsContainer=document.getElementById('details-container');
   detailsContainer.innerHTML='';
   detailsContainer.innerHTML+=`
-          <h1 class="text-xl font-bold text-black">${tree.name}</h1>
-           <img  class="rounded-xl h-44 w-full " src="${tree.image}" alt="">
+  <div class="max-h-96  max-w-full">
+          <h1 class="text-xl mb-1 font-bold text-black">${tree.name}</h1>
+           <img  class="rounded-xl  mb-1  w-full " src="${tree.image}" alt="">
            
-           <p class="text-base font-semibold text-black">
+           <p class="text-base  mb-1 font-semibold text-black">
            Category:<span class="text-base font-normal text-gray-600">${tree.category}</span>
            </p>
-            <p class="text-base font-semibold text-black">
-            Price:৳<p class="text-base font-normal text-gray-600">${tree.price}</p>
-            </p>
-            <p class="text-base font-semibold text-black">
+            <p class="text-base   mb-1 font-semibold text-black">
+            Price:৳${tree.price}</p>
+            
+            <p class="text-base  mb-1 font-semibold text-black">
            Description:<span class="text-base font-normal text-gray-600">${tree.description}</span>
            </p>
 
           <div class="modal-action">
             <form method="dialog">
            <!-- if there is a button in form, it will close the modal -->
-         <button class="btn">Close</button>
+         <button class="btn  mb-1">Close</button>
           </form>
           </div> 
-  
+  </div> 
   `
   document.getElementById('tree_modal').showModal();
 }
@@ -252,9 +254,9 @@ if (index === cartTrees.length-1) {
 
 
 const showLoading=()=>{
-   categoryContainer.innerHTML=`
+    loadAllItemsContainer.innerHTML=`
    
-   <div class="flex justify-center items-center h-screen">
+   <div class= flex justify-center items-center ">
 <div class="flex flex-row gap-2">
   <div class="w-4 h-4 rounded-full bg-black animate-bounce"></div>
   <div class="w-4 h-4 rounded-full bg-black animate-bounce [animation-delay:-.3s]"></div>
