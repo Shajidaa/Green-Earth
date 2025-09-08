@@ -16,14 +16,14 @@ const displayCategories=(categories)=>{
     categories.forEach(category => {
         // console.log(category.category_name);
         categoryContainer.innerHTML+=`
-        <ul class=''>  
+         
           <li class=" w-full text-start cursor-pointer  text-[#1F2937] p-2 hover:bg-[#CFF0DC] 
             font-semibold rounded-sm" onclick='loadTreeItems(${category.id})'
              id='categoryId-${category.id}'>
             ${category.category_name}
            </li>
         
-        </ul>
+        
         `
     
         
@@ -86,7 +86,7 @@ const displayAllTrees=(items)=>{
          <h2  onclick=categoryDetails(${item.id}) class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
           <p class="text-[12px] font-normal text-[#1F2937] line-clamp-2 lg:line-clamp-3">${item.description}</p>
              <div class="flex justify-between items-center py-2 " >
-              <p  class=" py-2 px-3 text-[#15803D] bg-[#DCFCE7] rounded-full text-xs">${item.category}</p>
+              <p  class=" py-2 px-2 text-[#15803D] bg-[#DCFCE7] rounded-full text-base">${item.category}</p>
                <div class='flex'>
               <p class="text-sm font-semibold text-[#15803D]">৳</p>
               <p class="text-sm font-semibold text-[#15803D]">${item.price}</p>
