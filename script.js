@@ -82,7 +82,7 @@ const displayAllItems=(items)=>{
              </div>
 
           <div class="card-actions ">
-         <button class="btn rounded-full w-full text-base text-white font-semibold bg-[#15803D]">Add to Cart</button>
+         <button class="btn rounded-full w-full text-base text-white font-semibold bg-[#15803D] hover:bg-[#42ad6d]">Add to Cart</button>
        </div>
                 </div>
                      </div>
@@ -132,7 +132,7 @@ allItems.forEach((item)=>{
              </div>
          
           <div class="card-actions ">
-         <button class="btn rounded-full w-full text-base  text-white font-semibold bg-[#15803D]">Add to Cart</button>
+         <button class="btn rounded-full w-full text-base  text-white font-semibold bg-[#15803D] hover:bg-[#42ad6d] ">Add to Cart</button>
        </div>
                 </div>
                      </div>
