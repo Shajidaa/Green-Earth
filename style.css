@@ -2,7 +2,15 @@
     font-family: "Inter", sans-serif;
 }
 
+.background {
 
+    background-image: url(./images/hero-leaf1.png), url(./images/hero-leaf2.png);
+    background-position: top left, top right;
+
+    background-repeat: no-repeat no-repeat;
+
+
+}
 
 .active {
     background-color: #15803D;

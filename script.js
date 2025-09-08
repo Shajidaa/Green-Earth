@@ -1,7 +1,7 @@
 
 const categoryContainer=document.getElementById('categoryContainer');
 const loadAllItemsContainer=document.getElementById('loadAllItemsContainer');
-
+//load category
 const loadCategory=()=>{
     const url=` https://openapi.programming-hero.com/api/categories`
     fetch(url)
@@ -17,8 +17,8 @@ const displayCategories=(categories)=>{
         // console.log(category.category_name);
         categoryContainer.innerHTML+=`
         <ul class=''>  
-          <li class=" w-full text-start  text-[#1F2937] p-2 hover:bg-[#CFF0DC] 
-            font-semibold rounded-sm" onclick='loadCategoriesContainer(${category.id})'
+          <li class=" w-full text-start cursor-pointer  text-[#1F2937] p-2 hover:bg-[#CFF0DC] 
+            font-semibold rounded-sm" onclick='treeItems(${category.id})'
              id='categoryId-${category.id}'>
             ${category.category_name}
            </li>
@@ -41,17 +41,27 @@ const displayCategories=(categories)=>{
     
     
 } 
-// load all category items function
-
-const loadAllCategory=()=>{
- showLoading();
-    fetch(`https://openapi.programming-hero.com/api/plants `)
+// category container load
+const treeItems=(id)=>{
+  showLoading();
+  let url=``;
+  if (id) {
+    url=`https://openapi.programming-hero.com/api/category/${id}`
+  }else{
+    url=`https://openapi.programming-hero.com/api/plants `
+  }
+     fetch(url)
     .then(res=>res.json())
-    .then(res=> displayAllItems(res.plants)
+    .then(res=> {
+      const trees=res.plants || [];
+      displayAllTrees(trees)
+    }
     )
-     
 }
-const displayAllItems=(items)=>{
+
+
+const displayAllTrees=(items)=>{
+ 
 
    loadAllItemsContainer.innerHTML='';
    
@@ -62,8 +72,8 @@ const displayAllItems=(items)=>{
         
         loadAllItemsContainer.innerHTML+=`
         <div class="card bg-base-100 shadow-sm h-96 md:max-w-96 max-w-full">
-                 <figure class='h-44'>
-                <img class=" bg-cover bg-center rounded-2xl w-full"
+                 <figure class='h-44 overflow-hidden'>
+                <img class="bg-cover bg-center rounded-2xl w-full h-full object-cover"
 
                  src=${item.image}
 
@@ -73,7 +83,7 @@ const displayAllItems=(items)=>{
          <h2  onclick=categoryDetails(${item.id}) class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
           <p class="text-[12px] font-normal text-[#1F2937]">${item.description}</p>
              <div class="flex justify-between items-center py-2 " >
-              <button  class="btn text-[#15803D] bg-[#DCFCE7] rounded-full">${item.category}</button>
+              <p  class=" py-2 px-3 text-[#15803D] bg-[#DCFCE7] rounded-full">${item.category}</p>
                <div class='flex'>
               <p class="text-sm font-semibold text-[#15803D]">৳</p>
               <p class="text-sm font-semibold text-[#15803D]">${item.price}</p>
@@ -91,58 +101,7 @@ const displayAllItems=(items)=>{
     })
     
 }
-//ক্যাটেগরি বাটন এ ক্লিক করলে অই কন্টেইনার upload hoar function
 
-const loadCategoriesContainer=(id)=>{
-showLoading();
- fetch(` https://openapi.programming-hero.com/api/category/${id}`)
- .then(res=>res.json())
- .then(res=>displayLoadCategoriesContainer(res.plants))
- 
-}
-
-const displayLoadCategoriesContainer=(allItems)=>{
-// console.log(allItems);
-  
-loadAllItemsContainer.innerHTML='';
-
-allItems.forEach((item)=>{
-    // console.log(item);
-  
-      loadAllItemsContainer.innerHTML+=`
-
-         <div class="card bg-base-100 shadow-sm max-h-96 p-5 md:max-w-96 max-w-full">
-                 <figure class='h-44 '>
-                <img class=" bg-cover bg-center rounded-2xl w-full"
-
-                 src=${item.image}
-
-                 alt="Shoes" />
-              </figure>
-                <div class=" ">
-         <h2 onclick=categoryDetails(${item.id})  class="card-title text-base font-semibold  text-[#1F2937] ">${item.name}</h2>
-          <p class="text-[12px] font-normal text-[#1F2937]">${item.description}</p>
-             <div class="flex justify-between items-center py-2 " >
-              <button class="btn text-[#15803D] bg-[#DCFCE7] rounded-full" >${item.category}</button>
-              <div class='flex'>
-              <p class="text-sm font-semibold text-[#15803D]">৳</p>
-              <p class="text-sm font-semibold text-[#15803D]">${item.price}</p>
-
-             </div>
-             </div>
-         
-          <div class="card-actions ">
-         <button class="btn rounded-full w-full text-base  text-white font-semibold bg-[#15803D] hover:bg-[#42ad6d] ">Add to Cart</button>
-       </div>
-                </div>
-                     </div>
-      
-        `
-})
-
-
-
-}
  
 
 
@@ -268,4 +227,7 @@ const showLoading=()=>{
 }
 
 loadCategory();
-loadAllCategory();
+
+ treeItems();
+
+ 
