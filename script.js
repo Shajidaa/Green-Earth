@@ -94,7 +94,7 @@ const displayAllItems=(items)=>{
 //ক্যাটেগরি বাটন এ ক্লিক করলে অই কন্টেইনার upload hoar function
 
 const loadCategoriesContainer=(id)=>{
-
+showLoading();
  fetch(` https://openapi.programming-hero.com/api/category/${id}`)
  .then(res=>res.json())
  .then(res=>displayLoadCategoriesContainer(res.plants))
@@ -103,7 +103,7 @@ const loadCategoriesContainer=(id)=>{
 
 const displayLoadCategoriesContainer=(allItems)=>{
 // console.log(allItems);
-  showLoading();
+  
 loadAllItemsContainer.innerHTML='';
 
 allItems.forEach((item)=>{
