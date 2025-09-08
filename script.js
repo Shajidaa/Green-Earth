@@ -18,7 +18,7 @@ const displayCategories=(categories)=>{
         categoryContainer.innerHTML+=`
         <ul class=''>  
           <li class=" w-full text-start cursor-pointer  text-[#1F2937] p-2 hover:bg-[#CFF0DC] 
-            font-semibold rounded-sm" onclick='treeItems(${category.id})'
+            font-semibold rounded-sm" onclick='loadTreeItems(${category.id})'
              id='categoryId-${category.id}'>
             ${category.category_name}
            </li>
@@ -42,7 +42,7 @@ const displayCategories=(categories)=>{
     
 } 
 // category container load
-const treeItems=(id)=>{
+const loadTreeItems=(id)=>{
   showLoading();
   let url=``;
   if (id) {
@@ -71,19 +71,22 @@ const displayAllTrees=(items)=>{
         // console.log(item.image);
         
         loadAllItemsContainer.innerHTML+=`
-        <div class="card bg-base-100 shadow-sm h-96 md:max-w-96 max-w-full">
-                 <figure class='h-44 overflow-hidden'>
-                <img class="bg-cover bg-center rounded-2xl w-full h-full object-cover"
+        <div class="card bg-base-100 shadow-sm h-full md:max-w-96 max-w-full p-5 flex lg:gap-2  ">
+        <div class='  overflow-hidden' p-5>     
+         <figure>
+                <img class=" bg-cover aspect-square  bg-center rounded-xl w-full h-full object-cover"
 
                  src=${item.image}
 
                  alt="image" />
               </figure>
-                <div class="p-5 ">
+              </div>
+            
+                <div class=" ">
          <h2  onclick=categoryDetails(${item.id}) class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
           <p class="text-[12px] font-normal text-[#1F2937]">${item.description}</p>
              <div class="flex justify-between items-center py-2 " >
-              <p  class=" py-2 px-3 text-[#15803D] bg-[#DCFCE7] rounded-full">${item.category}</p>
+              <p  class=" py-2 px-3 text-[#15803D] bg-[#DCFCE7] rounded-full text-xs">${item.category}</p>
                <div class='flex'>
               <p class="text-sm font-semibold text-[#15803D]">৳</p>
               <p class="text-sm font-semibold text-[#15803D]">${item.price}</p>
@@ -162,8 +165,9 @@ const handleCart=(e)=>{
 
 // console.log(treePrice);
 
-  
+   alert (`${treeName} has been added to cart.`)
   cartTrees.push({treeName,treePrice})
+  
 displayCartTree(cartTrees)
  
   
@@ -175,32 +179,42 @@ const displayCartTree=(cartTrees)=>{
    
 
  cartTrees.forEach((cartTree ,index)=>{
-if (index === cartTrees.length-1) {
-    alert (`${cartTree.treeName} has been added to cart.`)
-   }
+
 
   yourCart.innerHTML+=`
                <div class='mt-2'>
                     <div class=" bg-[#f0fdf4] flex  p-4 shadow-sm
                   justify-between items-center rounded-xl ">
                     <div><h2>${cartTree.treeName}</h2>
-                    <h3 id='price' class="">৳ ${cartTree.treePrice} </h3>
+                    <h3 id='price' class="text-base font-normal text-[#1F2937]">৳ ${cartTree.treePrice} <i class="fa-solid fa-xmark text-[#1F2937] text-base "></i> </h3>
                   </div>
-                  <div onclick='handleDeleteCart(${cartTree.id})' class="">delete</div>
+                  <div onclick='handleDeleteCart(${cartTree.index})' class="">delete</div>
                   </div>
                  
                 </div>
   `
+ 
 
- const total=cartTrees.reduce((price,cart)=>price+parseFloat(cart.treePrice),0)
-  
-  document.getElementById('total-price').innerText=`${total}`
  })
+  totalCart();
+
 
 }
 
-//delete 
 
+//delete  
+
+const handleDeleteCart=(index)=>{
+cartTrees.splice(index,1);
+displayCartTree(cartTrees);
+}
+ //total function
+const totalCart=()=>{
+
+const total=cartTrees.reduce((price,cart)=>price+parseFloat(cart.treePrice),0)
+  
+  document.getElementById('total-price').innerText=`${total}`
+}
 
 
 
@@ -228,6 +242,6 @@ const showLoading=()=>{
 
 loadCategory();
 
- treeItems();
+loadTreeItems();
 
  
