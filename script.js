@@ -53,8 +53,8 @@ const loadTreeItems=(id)=>{
      fetch(url)
     .then(res=>res.json())
     .then(res=> {
-      const trees=res.plants || [];
-      displayAllTrees(trees)
+      displayAllTrees (res.plants || []);
+    
     }
     )
 }
@@ -68,10 +68,7 @@ const displayAllTrees=(items)=>{
     // console.log(items);
     items.forEach((item )=>{
         // console.log(item);
-        // console.log(item.image);
-    
-        
-        
+        // console.log(item.image); 
         loadAllItemsContainer.innerHTML+=`
         <div class=" h-fit rounded-lg  bg-base-100 shadow-sm p-3   ">
     
@@ -103,6 +100,7 @@ const displayAllTrees=(items)=>{
                 </div>
                      </div>
         `
+       
         
     })
     
@@ -128,7 +126,7 @@ const displayTreeDetails=(tree)=>{
   detailsContainer.innerHTML+=`
   <div class="max-h-96  max-w-full">
           <h1 class="text-xl mb-1 font-bold text-black">${tree.name}</h1>
-           <img  class="rounded-xl  mb-1  w-full " src="${tree.image}" alt="">
+           <img  class="rounded-xl  mb-1 aspect-3/2   object-cover  w-full " src="${tree.image}" alt="">
            
            <p class="text-base  mb-1 font-semibold text-black">
            Category:<span class="text-base font-normal text-gray-600">${tree.category}</span>
@@ -153,8 +151,7 @@ const displayTreeDetails=(tree)=>{
 
 //add to cart 
 let cartTrees=[];
-
-loadAllItemsContainer.addEventListener('click',(e)=>{
+ loadAllItemsContainer.addEventListener('click',(e)=>{
   if (e.target.innerText==='Add to Cart') {
     handleCart(e);
     
@@ -190,7 +187,7 @@ const displayCartTree=(cartTrees)=>{
                     <div class=" bg-[#f0fdf4] flex  p-2 shadow-sm
                   justify-between items-center rounded-xl ">
                     <div><h2 class='text-base'>${cartTree.treeName}</h2>
-                    <h3 id='price' class="text-xs font-normal text-[#1F2937]">৳ ${cartTree.treePrice} <i class="fa-solid fa-xmark text-[#1F2937] text-xs "></i> <span>1</span> </h3>
+                    <h3 id='price' class="text-xs font-normal   text-[#1F2937]">৳ ${cartTree.treePrice} <i class="fa-solid fa-xmark text-[#1F2937] text-xs "></i> <span>1</span> </h3>
                   </div>
                   <div onclick='handleDeleteCart(${cartTree.id})' class=""><i class="fa-solid fa-xmark text-[#1F2937] text-xs "></i></div>
                   </div>
@@ -221,20 +218,11 @@ const total=cartTrees.reduce((price,cart)=>price+parseFloat(cart.treePrice),0)
 }
 
 
-
-
-
-
-
-
-
-
-
 const showLoading=()=>{
 
     loadAllItemsContainer.innerHTML=`
    
-   <div class= "col-span-full flex justify-center items-center ">
+   <div class= "col-span-full flex justify-center  ">
 <div class="flex flex-row gap-2">
   <div class="w-4 h-4 rounded-full bg-green-600 animate-bounce"></div>
   <div class="w-4 h-4 rounded-full bg-green-600 animate-bounce [animation-delay:-.3s]"></div>
