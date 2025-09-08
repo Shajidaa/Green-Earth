@@ -6,13 +6,21 @@
 
     background-image: url(./images/hero-leaf1.png), url(./images/hero-leaf2.png);
     background-position: top left, top right;
-
     background-repeat: no-repeat no-repeat;
+    background-size: contain;
 
 
 }
 
+
 .active {
     background-color: #15803D;
     color: white;
+}
+
+
+@media (max-width:768px) {
+    .background {
+        background-image: none;
+    }
 }
