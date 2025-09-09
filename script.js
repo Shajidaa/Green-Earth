@@ -74,7 +74,7 @@ const displayAllTrees=(items)=>{
     
 
          <figure class=' rounded-xl overflow-hidden'>
-                <img class="aspect-3/2   object-cover"
+                <img class="aspect-3/2 w-full  object-cover"
 
                  src=${item.image}
 
@@ -124,7 +124,7 @@ const displayTreeDetails=(tree)=>{
   const detailsContainer=document.getElementById('details-container');
   detailsContainer.innerHTML='';
   detailsContainer.innerHTML+=`
-  <div class="">
+ 
           <h1 class="text-xl mb-1 font-bold text-black">${tree.name}</h1>
            <img  class="rounded-xl  mb-1 aspect-3/2   object-cover " src="${tree.image}" alt="">
            
@@ -144,7 +144,7 @@ const displayTreeDetails=(tree)=>{
          <button class="btn bg-green-600 ">Close</button>
           </form>
           </div> 
-  </div> 
+
   `
   document.getElementById('tree_modal').showModal();
 }
