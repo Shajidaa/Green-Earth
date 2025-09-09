@@ -124,9 +124,9 @@ const displayTreeDetails=(tree)=>{
   const detailsContainer=document.getElementById('details-container');
   detailsContainer.innerHTML='';
   detailsContainer.innerHTML+=`
-  <div class="max-h-96  max-w-full">
+  <div class="max-h-96  max-w-full md:w-1/2">
           <h1 class="text-xl mb-1 font-bold text-black">${tree.name}</h1>
-           <img  class="rounded-xl  mb-1 aspect-3/2   object-cover  w-full " src="${tree.image}" alt="">
+           <img  class="rounded-xl  mb-1 aspect-3/2   object-cover " src="${tree.image}" alt="">
            
            <p class="text-base  mb-1 font-semibold text-black">
            Category:<span class="text-base font-normal text-gray-600">${tree.category}</span>
@@ -134,14 +134,14 @@ const displayTreeDetails=(tree)=>{
             <p class="text-base mb-1 font-semibold text-black">
             Price: <span class="text-base font-normal text-gray-600">৳${tree.price}</span></p>
             
-            <p class="text-base  mb-1 font-semibold text-black">
+            <p class="text-base  font-semibold text-black">
            Description:<span class="text-base font-normal text-gray-600">${tree.description}</span>
            </p>
 
           <div class="modal-action">
             <form method="dialog">
            <!-- if there is a button in form, it will close the modal -->
-         <button class="btn bg-green-600 mb-1">Close</button>
+         <button class="btn bg-green-600 ">Close</button>
           </form>
           </div> 
   </div> 
