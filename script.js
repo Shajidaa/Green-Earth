@@ -188,7 +188,7 @@ const displayCartTree=(cartTrees)=>{
                     <div><h2 class='text-base'>${cartTree.treeName}</h2>
                     <h3 id='price' class="text-xs font-normal   text-[#1F2937]">৳ ${cartTree.treePrice} <i class="fa-solid fa-xmark text-[#1F2937] text-xs "></i> <span>1</span> </h3>
                   </div>
-                  <div onclick='handleDeleteCart(${cartTree.id})' class=""><i class="fa-solid fa-xmark text-[#1F2937] text-xs remove-btn "></i></div>
+                  <div onclick='handleDeleteCart(${cartTree.id})' class=""><i class="fa-solid fa-xmark text-[#1F2937] text-base remove-btn "></i></div>
                   </div>
                  
                 </div>
