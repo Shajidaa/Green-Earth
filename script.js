@@ -73,7 +73,7 @@ const displayAllTrees=(items)=>{
         <div class=" h-fit rounded-lg  bg-base-100 shadow-sm lg:p-3 p-4">
     
 
-         <figure class=' rounded-xl overflow-hidden'>
+         <figure class=' rounded-xl w-full overflow-hidden'>
                 <img class="aspect-3/2 w-full  object-cover"
 
                  src=${item.image}
@@ -126,7 +126,7 @@ const displayTreeDetails=(tree)=>{
   detailsContainer.innerHTML+=`
  
           <h1 class="text-xl mb-1 font-bold text-black">${tree.name}</h1>
-           <img  class="rounded-xl  mb-1 aspect-3/2   object-cover " src="${tree.image}" alt="">
+           <img  class="rounded-xl  mb-1 aspect-3/2  w-full object-cover " src="${tree.image}" alt="">
            
            <p class="text-base  mb-1 font-semibold text-black">
            Category:<span class="text-base font-normal text-gray-600">${tree.category}</span>
