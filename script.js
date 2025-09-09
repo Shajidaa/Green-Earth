@@ -124,7 +124,7 @@ const displayTreeDetails=(tree)=>{
   const detailsContainer=document.getElementById('details-container');
   detailsContainer.innerHTML='';
   detailsContainer.innerHTML+=`
-  <div class="max-h-96  max-w-full md:w-1/2">
+  <div class="">
           <h1 class="text-xl mb-1 font-bold text-black">${tree.name}</h1>
            <img  class="rounded-xl  mb-1 aspect-3/2   object-cover " src="${tree.image}" alt="">
            
