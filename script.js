@@ -163,15 +163,14 @@ const handleCart=(e)=>{
   const treePrice=e.target.parentNode.parentNode.children[2].children[1].children[1].innerText;
 
 const id=Date.now( );
-console.log(id);
+// console.log(id);
 // console.log(treePrice);
 
    alert (`${treeName} has been added to cart.`)
   cartTrees.push({treeName,treePrice,id})
+
   
 displayCartTree(cartTrees)
- 
-  
 }
 const displayCartTree=(cartTrees)=>{
 
@@ -183,13 +182,13 @@ const displayCartTree=(cartTrees)=>{
 
 
   yourCart.innerHTML+=`
-               <div class='mt-2'>
+               <div class='mt-2 cart-item' >
                     <div class=" bg-[#f0fdf4] flex  p-2 shadow-sm
                   justify-between items-center rounded-xl ">
                     <div><h2 class='text-base'>${cartTree.treeName}</h2>
                     <h3 id='price' class="text-xs font-normal   text-[#1F2937]">৳ ${cartTree.treePrice} <i class="fa-solid fa-xmark text-[#1F2937] text-xs "></i> <span>1</span> </h3>
                   </div>
-                  <div onclick='handleDeleteCart(${cartTree.id})' class=""><i class="fa-solid fa-xmark text-[#1F2937] text-xs "></i></div>
+                  <div onclick='handleDeleteCart(${cartTree.id})' class=""><i class="fa-solid fa-xmark text-[#1F2937] text-xs remove-btn "></i></div>
                   </div>
                  
                 </div>
@@ -197,6 +196,7 @@ const displayCartTree=(cartTrees)=>{
  
 
  })
+
   totalCart();
 
 
@@ -209,12 +209,16 @@ const handleDeleteCart=(id)=>{
 cartTrees=cartTrees.filter(cartTree=>cartTree.id !=id)
 displayCartTree(cartTrees);
 }
+
+
+
  //total function
-const totalCart=()=>{
+let totalCart=()=>{
 
 const total=cartTrees.reduce((price,cart)=>price+parseFloat(cart.treePrice),0)
   
   document.getElementById('total-price').innerText=`${total}`
+ 
 }
 
 
