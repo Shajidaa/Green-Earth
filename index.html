@@ -59,10 +59,11 @@
               <li>About</li>
               <li>Gallery</li>
               <li>Plant a Tree</li>
+        
             </ul>
           </div>
           <div class="flex justify-center items-center gap-2">
-            <img class="size-10 " src="./images/plant.png" alt="">
+            <!-- <img class="size-10 " src="./images/plant.png" alt=""> -->
             <h1 class="md:text-2xl text-xl font-bold text-white">Green Earth</h1>
           </div>
           
@@ -120,7 +121,7 @@
               class="grid lg:grid-cols-3 md:grid-cols-2  md:col-span-2 lg:col-span-3  gap-3 lg:gap-6 ">
 
               </div>
-              <aside class="md:grid-cols-1 bg-white rounded-xl  p-2">
+              <aside class="md:grid-cols-1 bg-white shadow  rounded-xl  p-2">
                 <div><h1 class="text-xl font-semibold text-black mb-2">Your Cart</h1></div>
                 
                 <div id="your-cart-container" class="p-2">
@@ -154,14 +155,14 @@
 
 
             <!-- About the Campaign -->
-           <section class=" max-w-[1090px] mx-auto pb-20 ">
-      <h1 class="text-center text-3xl font-semibold text-[#1F2937]  mt-8 mb-8">About the Campaign</h1>
-    <div class="flex flex-col md:flex-row md:justify-between gap-10 items-center mx-auto">
-      <div class="md:w-1/2 w-full shadow-xl ">
-        <img class="bg-cover" src="./images/about.png" alt="">
-      </div>
-      <div class="md:w-1/2 w-[90%] mx-auto ">
-        <p class="text-base font-normal text-[#1F2937] ">Green Earth is a global tree plantation initiative dedicated 
+           <section class=" max-w-[1090px] mx-auto pb-20  ">
+      <h1 class="text-center md:text-3xl text-2xl font-semibold text-[#1F2937]  mt-8 mb-8">About the Campaign</h1>
+       <div class="flex flex-col md:flex-row md:justify-between gap-10 items-center mx-auto p-4">
+       <div class="md:w-1/2 w-full shadow-xs rounded-xl">
+        <img class="bg-cover rounded" src="./images/about.png" alt="">
+       </div>
+       <div class="md:w-1/2 w-[90%] mx-auto ">
+         <p class="text-base font-normal text-[#1F2937] ">Green Earth is a global tree plantation initiative dedicated 
           to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, 
           you help restore forests, create habitats for wildlife, and combat global warming.</p>
           <ul class=" list-disc text-base font-normal text-[#1F2937] ">
@@ -207,16 +208,17 @@
     </div>
     </section>
    <!-- form -->
-     <section class="bg-[#166534] md:p-20 p-10">
+     <section class="bg-[#166534] md:p-20 p-5">
     <div class="mx-auto container max-w-[650px]">
  <h1 class="text-white text-3xl text-center font-semibold mb-8">
   Plant a Tree Today
  </h1>
-      <div class="md:p-10 p-5 bg-[#15803D] rounded shadow-2xl">
+      <div class="md:p-10 p-6 bg-[#15803D] rounded shadow-xl md:mb-0 mb-6 ">
          <input type="text" name="text"  placeholder="Your Name" class="input input-ghost w-full bg-white rounded mb-3 text-base text-gray-400 p-2" />
          <input type="email" name="text"  placeholder="Your Email" class="input input-ghost w-full bg-white rounded mb-3 text-base text-gray-400 p-2" />
         <input type="text" class="input w-full " placeholder="Numbers of Trees" list="Numbers" class="input input-ghost  text-base bg-white rounded mb-3 text-gray-400 p-2"  />
-<datalist id="Numbers">
+     <datalist id="Numbers" >
+      
   <option value="1"></option>
   <option value="2"></option>
   <option value="3"></option>

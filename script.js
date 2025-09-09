@@ -70,7 +70,7 @@ const displayAllTrees=(items)=>{
         // console.log(item);
         // console.log(item.image); 
         loadAllItemsContainer.innerHTML+=`
-        <div class=" h-fit rounded-lg  bg-base-100 shadow-sm p-3   ">
+        <div class=" h-fit rounded-lg  bg-base-100 shadow-sm lg:p-3 p-4">
     
 
          <figure class=' rounded-xl overflow-hidden'>
@@ -86,10 +86,10 @@ const displayAllTrees=(items)=>{
          <h2  onclick=categoryDetails(${item.id}) class="card-title text-base font-semibold text-[#1F2937]">${item.name}</h2>
           <p class="text-[12px] font-normal text-[#1F2937] line-clamp-2 lg:line-clamp-3">${item.description}</p>
              <div class="flex justify-between items-center py-2 " >
-              <p  class=" py-2 px-2 text-[#15803D] bg-[#DCFCE7] rounded-full text-base">${item.category}</p>
-               <div class='flex'>
-              <p class="text-sm font-semibold text-[#15803D]">৳</p>
-              <p class="text-sm font-semibold text-[#15803D]">${item.price}</p>
+              <p  class=" py-2 px-2 text-[#15803D] bg-[#DCFCE7] rounded-full text-xs">${item.category}</p>
+               <div class='flex '>
+              <p class="text-sm font-semibold text-[#1F2937]">৳</p>
+              <p class="text-sm font-semibold text-[#1F2937]">${item.price}</p>
 
              </div>
              </div>
@@ -131,8 +131,8 @@ const displayTreeDetails=(tree)=>{
            <p class="text-base  mb-1 font-semibold text-black">
            Category:<span class="text-base font-normal text-gray-600">${tree.category}</span>
            </p>
-            <p class="text-base   mb-1 font-semibold text-black">
-            Price:৳${tree.price}</p>
+            <p class="text-base mb-1 font-semibold text-black">
+            Price: <span class="text-base font-normal text-gray-600">৳${tree.price}</span></p>
             
             <p class="text-base  mb-1 font-semibold text-black">
            Description:<span class="text-base font-normal text-gray-600">${tree.description}</span>
